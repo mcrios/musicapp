@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="Hear2">
+		<class>org.proyectosfgk.entity.Album</class>
+		<class>org.proyectosfgk.entity.Artista</class>
+		<class>org.proyectosfgk.entity.Cancion</class>
+		<class>org.proyectosfgk.entity.Chat</class>
+		<class>org.proyectosfgk.entity.Genero</class>
+		<class>org.proyectosfgk.entity.Mensaje</class>
+		<class>org.proyectosfgk.entity.PuntuacionUsuario</class>
+		<class>org.proyectosfgk.entity.Sugerencia</class>
+		<class>org.proyectosfgk.entity.Usuario</class>
+		<class>org.proyectosfgk.entity.UsuarioChat</class>
+	</persistence-unit>
+</persistence>
