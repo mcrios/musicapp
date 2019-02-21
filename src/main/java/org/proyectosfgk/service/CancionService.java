@@ -14,7 +14,7 @@ public class CancionService {
 	private CancionRepository dao;
 	
 	public List<Cancion> verTodas(){
-		return (List<Cancion>) dao.findAll();
+		return dao.findCancionSinArchivo();
 	}
 	
 	public Cancion encontrarCancion(Integer id) {
@@ -28,4 +28,9 @@ public class CancionService {
 	public void eliminar(Cancion c) {
 		dao.delete(c);
 	}
+	
+	public byte[] verArchivo(Integer id) {
+		return dao.findCancion(id).getArchivo();
+	}
+	
 }
