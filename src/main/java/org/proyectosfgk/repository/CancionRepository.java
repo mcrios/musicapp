@@ -20,4 +20,10 @@ public interface CancionRepository extends CrudRepository<Cancion, Integer>{
 	 */
 	@Query("SELECT new Cancion(c.id, c.nombre, c.album, c.genero) FROM Cancion c")
 	List<Cancion> findCancionSinArchivo(); 
+	
+	@Query("SELECT new Cancion(c.id, c.nombre, c.album, c.genero) FROM Cancion c WHERE c.id = :id")
+	Cancion findCancionNoAudio(@Param("id")Integer id);
+	
+	@Query("SELECT new Cancion(c.id, c.nombre, c.album, c.genero) FROM Cancion c WHERE c.album.nombre = :nombreAlbum")
+	List<Cancion> findCancionByAlbum(@Param("nombreAlbum")String nombre); 
 }

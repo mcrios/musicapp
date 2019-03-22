@@ -58,8 +58,13 @@ public class CancionController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_OCTET_STREAM);
 		headers.setContentLength(miarchivo.length);
-		file = new ResponseEntity<byte[]>(miarchivo, headers, HttpStatus.OK); 
+		file = new ResponseEntity<byte[]>(miarchivo, headers, HttpStatus.OK );
 		return file;
+	}
+	
+	@GetMapping("/verPorAlbum/{album}")
+	public List<Cancion> verPorAlbum(@PathVariable String album){
+		return service.encontrarPorAlbum(album);
 	}
 	
 }

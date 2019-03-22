@@ -18,7 +18,7 @@ public class CancionService {
 	}
 	
 	public Cancion encontrarCancion(Integer id) {
-		return dao.findOne(id);
+		return dao.findCancionNoAudio(id);
 	}
 	
 	public void guardarEditar(Cancion c) {
@@ -31,6 +31,10 @@ public class CancionService {
 	
 	public byte[] verArchivo(Integer id) {
 		return dao.findCancion(id).getArchivo();
+	}
+	
+	public List<Cancion> encontrarPorAlbum(String album){
+		return dao.findCancionByAlbum(album);
 	}
 	
 }

@@ -28,4 +28,8 @@ public class AlbumService {
 	public Album encontrarAlbum(Integer id) {
 		return dao.findOne(id);
 	}
+	
+	public Album encotrarAlbumNombre(String album) {
+		return dao.findAlbumByName(album);
+	}
 }
