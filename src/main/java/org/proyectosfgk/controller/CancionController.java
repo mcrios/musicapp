@@ -52,7 +52,7 @@ public class CancionController {
 	@GetMapping("/stream/{id}")
 	@ResponseBody public ResponseEntity<byte[]> getArchivo(@PathVariable Integer id, HttpServletResponse response){
 		ResponseEntity<byte[]> file = null;
-		byte[] miarchivo = service.encontrarCancion(id).getArchivo();
+		byte[] miarchivo = service.encontrar(id).getArchivo();
 		
 		response.setStatus(HttpStatus.OK.value());
 		HttpHeaders headers = new HttpHeaders();

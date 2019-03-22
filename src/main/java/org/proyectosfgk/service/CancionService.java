@@ -37,4 +37,8 @@ public class CancionService {
 		return dao.findCancionByAlbum(album);
 	}
 	
+	public Cancion encontrar(Integer id) {
+		return dao.findOne(id);
+	}
+	
 }
