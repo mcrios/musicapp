@@ -30,7 +30,7 @@ import io.jsonwebtoken.Jwts;
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
 	private final Key SECRET_KEY;
-	
+
 	private AuthenticationManager authenticationManager;
 
 	public JWTAuthenticationFilter(AuthenticationManager authenticationManager, Key secret) {
@@ -42,22 +42,22 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response)
 			throws AuthenticationException {
-		//Obtener datos a traves de form-data
-//		String username = obtainUsername(request);
-//		String password = obtainPassword(request);
-//		logger.info("PASSWORD: " + password + " USERNAME: " + username);
-//		if(username != null && password != null)
-//			logger.info("PASSWORD: " + password + " USERNAME: " + username);
+		// Obtener datos a traves de form-data
+		// String username = obtainUsername(request);
+		// String password = obtainPassword(request);
+		// logger.info("PASSWORD: " + password + " USERNAME: " + username);
+		// if(username != null && password != null)
+		// logger.info("PASSWORD: " + password + " USERNAME: " + username);
 		Usuario user = new Usuario();
 		try {
 			user = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
-			//logger.info("PASSWORD: " + user.getClave() + " USERNAME: " + user.getCorreo());
+			// logger.info("PASSWORD: " + user.getClave() + " USERNAME: " +
+			// user.getCorreo());
 		} catch (IOException e) {
 			logger.error("ERROR CONVIRTIENDO VALORES DE USUARIO: " + e.getMessage());
 		}
 
-		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(
-				user.getCorreo(),
+		UsernamePasswordAuthenticationToken authToken = new UsernamePasswordAuthenticationToken(user.getCorreo(),
 				user.getClave());
 		return authenticationManager.authenticate(authToken);
 	}
@@ -65,24 +65,19 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 	@Override
 	protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain,
 			Authentication authResult) throws IOException, ServletException {
-		
-		//Obtenemos el usuario que esta en sesion.
-		String principal = ((User)authResult.getPrincipal()).getUsername();
-		
-		//Insertamos los roles del usuario
+
+		// Obtenemos el usuario que esta en sesion.
+		String principal = ((User) authResult.getPrincipal()).getUsername();
+
+		// Insertamos los roles del usuario
 		Claims claims = Jwts.claims();
 		claims.put("Authorities", new ObjectMapper().writeValueAsString(authResult.getAuthorities()));
-		
-		//Tiempo de expiracion de media hora
-		Date timeExpiration = new Date(System.currentTimeMillis()+1800000L);
-		
-		String token = Jwts.builder()
-				.setClaims(claims)
-				.setSubject(principal)
-				.signWith(SECRET_KEY)
-				.setIssuedAt(new Date())
-				.setExpiration(timeExpiration)
-				.compact();
+
+		// Tiempo de expiracion de media hora
+		Date timeExpiration = new Date(System.currentTimeMillis() + 1800000L);
+
+		String token = Jwts.builder().setClaims(claims).setSubject(principal).signWith(SECRET_KEY)
+				.setIssuedAt(new Date()).setExpiration(timeExpiration).compact();
 
 		response.addHeader("Authorization", "Bearer " + token);
 
