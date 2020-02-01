@@ -10,4 +10,6 @@ import org.springframework.stereotype.Repository;
 public interface UsuarioRepository extends CrudRepository<Usuario, Integer> {
 	@Query("SELECT u FROM Usuario u WHERE u.clave= :clave AND u.correo = :correo")
 	Usuario findByCorreoAndClave(@Param("clave") String clave, @Param("correo")String correo);
+	
+	Usuario findByCorreo(String correo);
 }

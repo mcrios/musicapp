@@ -7,18 +7,17 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.List;
 
-
 /**
  * The persistent class for the usuario database table.
  * 
  */
 @Entity
-@NamedQuery(name="Usuario.findAll", query="SELECT u FROM Usuario u")
+@NamedQuery(name = "Usuario.findAll", query = "SELECT u FROM Usuario u")
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 
 	private String clave;
@@ -33,28 +32,31 @@ public class Usuario implements Serializable {
 	private byte[] imagen;
 
 	private String nombre;
+	
+	private Boolean enable;
 
-	private String rol;
-
-	//bi-directional many-to-one association to Mensaje
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to Mensaje
+	@OneToMany(mappedBy = "usuario")
 	@JsonIgnore
 	private List<Mensaje> mensajes;
 
-	//bi-directional many-to-one association to PuntuacionUsuario
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to PuntuacionUsuario
+	@OneToMany(mappedBy = "usuario")
 	@JsonIgnore
 	private List<PuntuacionUsuario> puntuacionUsuarios;
 
-	//bi-directional many-to-one association to Sugerencia
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to Sugerencia
+	@OneToMany(mappedBy = "usuario")
 	@JsonIgnore
 	private List<Sugerencia> sugerencias;
 
-	//bi-directional many-to-one association to UsuarioChat
-	@OneToMany(mappedBy="usuario")
+	// bi-directional many-to-one association to UsuarioChat
+	@OneToMany(mappedBy = "usuario")
 	@JsonIgnore
 	private List<UsuarioChat> usuarioChats;
+
+	@ManyToOne
+	private Role role;
 
 	public Usuario() {
 	}
@@ -115,12 +117,20 @@ public class Usuario implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public String getRol() {
-		return this.rol;
+	public Boolean getEnable() {
+		return enable;
 	}
 
-	public void setRol(String rol) {
-		this.rol = rol;
+	public void setEnable(Boolean enable) {
+		this.enable = enable;
+	}
+
+	public Role getRole() {
+		return role;
+	}
+
+	public void setRole(Role role) {
+		this.role = role;
 	}
 
 	public List<Mensaje> getMensajes() {

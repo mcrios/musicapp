@@ -27,7 +27,7 @@ public class UsuarioController {
 	
 	@PostMapping("/login")
 	public Usuario login (@RequestBody Usuario u) {
-		//System.out.println(u.getCorreo());
+		System.out.println("LLEGO");
 		return service.login(u);
 	}
 	

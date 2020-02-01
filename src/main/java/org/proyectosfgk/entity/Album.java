@@ -39,7 +39,19 @@ public class Album implements Serializable {
 
 	public Album() {
 	}
-
+	
+	public Album(int id,byte[] portada) {
+		this.id = id;
+		this.portada = portada;
+	}
+	
+	public Album(int id, String fecha, String nombre, Artista artista) {
+		super();
+		this.id = id;
+		this.fecha = fecha;
+		this.nombre = nombre;
+		this.artista = artista;
+	}
 	public int getId() {
 		return this.id;
 	}

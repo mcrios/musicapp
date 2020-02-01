@@ -10,14 +10,14 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CancionRepository extends CrudRepository<Cancion, Integer>{
-
-	@Query("SELECT c.archivo FROM Cancion c WHERE id = :id")
-	Cancion findCancion (@Param("id") Integer id);
 	
 	/**
 	 * Metodo para encontrar el archivo de la cancion
 	 * @return Objecto cancion solo con Archivo
 	 */
+	@Query("SELECT c.archivo FROM Cancion c WHERE id = :id")
+	Cancion findCancion (@Param("id") Integer id);
+	
 	@Query("SELECT new Cancion(c.id, c.nombre, c.album, c.genero) FROM Cancion c")
 	List<Cancion> findCancionSinArchivo(); 
 	
