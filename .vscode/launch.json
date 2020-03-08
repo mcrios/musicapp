@@ -1,0 +1,14 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Spring Boot-Hear2Application<Hear2>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "console": "internalConsole",
+            "mainClass": "org.proyectosfgk.Hear2Application",
+            "projectName": "Hear2",
+            "args": ""
+        }
+    ]
+}

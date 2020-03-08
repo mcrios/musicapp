@@ -51,8 +51,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
 		Usuario user = new Usuario();
 		try {
 			user = new ObjectMapper().readValue(request.getInputStream(), Usuario.class);
-			// logger.info("PASSWORD: " + user.getClave() + " USERNAME: " +
-			// user.getCorreo());
+//			logger.info("PASSWORD: " + user.getClave() + " USERNAME: " + user.getCorreo());
 		} catch (IOException e) {
 			logger.error("ERROR CONVIRTIENDO VALORES DE USUARIO: " + e.getMessage());
 		}

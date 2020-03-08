@@ -64,7 +64,7 @@ public class JWTAuthorization extends BasicAuthenticationFilter {
 		}
 
 		if (claim != null) {
-			logger.info("BIENVENIDO: " + claim.getSubject());
+//			logger.info("BIENVENIDO: " + claim.getSubject());
 			Object authorities = claim.get("Authorities");
 			
 			Collection<? extends GrantedAuthority> roles = Arrays.asList(

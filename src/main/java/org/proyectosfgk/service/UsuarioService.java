@@ -12,24 +12,31 @@ public class UsuarioService {
 
 	@Autowired
 	UsuarioRepository dao;
-	
-	
-	public List<Usuario> verTodos(){
+
+	public List<Usuario> verTodos() {
 		return (List<Usuario>) dao.findAll();
 	}
-	
+
 	public Usuario encontrarUsuario(Integer id) {
 		return dao.findOne(id);
 	}
-	
-	public Usuario login (Usuario u) {
+
+	public Usuario login(Usuario u) {
 		return dao.findByCorreoAndClave(u.getClave(), u.getCorreo());
 	}
-	
+
 	public void crearEditar(Usuario u) {
 		dao.save(u);
 	}
-	
-	
+
+	public Boolean eliminar(Integer id) {
+		try {
+			dao.delete(id);
+			return true;
+		} catch (Exception e) {
+			System.out.println("Error al intentar eliminar el usuario. " + e.getMessage());
+			return false;
+		}
+	}
 
 }

@@ -43,7 +43,7 @@ public class JPAUSerDetails implements UserDetailsService {
         	throw new UsernameNotFoundException("Error en el Login: usuario '" + username + "' no tiene roles asignados!");
         }
         
-		return new User(user.getCorreo(), user.getClave(), user.getEnable(), true, true, true, authorities);
+		return new User(user.getCorreo(), user.getClave(), user.getEstado(), true, true, true, authorities);
 	}
 
 }

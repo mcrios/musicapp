@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -24,7 +25,7 @@ public class Usuario implements Serializable {
 
 	private String correo;
 
-	private String estado;
+	private Boolean estado;
 
 	private String genero;
 
@@ -32,8 +33,6 @@ public class Usuario implements Serializable {
 	private byte[] imagen;
 
 	private String nombre;
-	
-	private Boolean enable;
 
 	// bi-directional many-to-one association to Mensaje
 	@OneToMany(mappedBy = "usuario")
@@ -85,11 +84,11 @@ public class Usuario implements Serializable {
 		this.correo = correo;
 	}
 
-	public String getEstado() {
+	public Boolean getEstado() {
 		return this.estado;
 	}
 
-	public void setEstado(String estado) {
+	public void setEstado(Boolean estado) {
 		this.estado = estado;
 	}
 
@@ -115,14 +114,6 @@ public class Usuario implements Serializable {
 
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public Boolean getEnable() {
-		return enable;
-	}
-
-	public void setEnable(Boolean enable) {
-		this.enable = enable;
 	}
 
 	public Role getRole() {
@@ -220,5 +211,13 @@ public class Usuario implements Serializable {
 
 		return usuarioChat;
 	}
+
+	@Override
+	public String toString() {
+		return "Usuario [id=" + id + ", clave=" + clave + ", correo=" + correo + ", estado=" + estado + ", genero="
+				+ genero + ", imagen=" + Arrays.toString(imagen) + ", nombre=" + nombre + ", role=" + role.getAuthority() + "]";
+	}
+	
+	
 
 }
